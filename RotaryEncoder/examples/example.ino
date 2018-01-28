@@ -116,7 +116,7 @@ void encoderMoved()
   {
 
     // Debounce at this stage.
-    if (interrupt_time - last_interrupt_time > debounceSpeedMS) 
+    if (interrupt_time - last_interrupt_time >= debounceSpeedMS) 
     {
     
       // Check against an initial (pre-rotation) value so that we don't have an initial jump
@@ -130,6 +130,7 @@ void encoderMoved()
           // Anti Clockwise
           encoderValue--;
           Serial.println("anticlockwise");
+          
         }
         else
         {
@@ -138,6 +139,7 @@ void encoderMoved()
           Serial.println("clockwise");
         }
 
+        Serial.println(encoderValue);
         setBrightness(encoderValue * brightnessDiff);
 
       }
